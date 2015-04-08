@@ -31,20 +31,22 @@ void loop()
   Serial.print("Temperature=");
   Serial.println(tmpC);
   disp.display(tmpC);
-  if (tmpC > warningTmp) {
-    loopColorYellow();
-  }
+
 
   motor.run(100);
 
-  if (tmpC > 31 && tmpC < 35) {
+  if (tmpC < 33) {
     motor.run(100);
+    loopColorWhite();
   } else if (tmpC > 35.1 && tmpC < 37) {
     motor.run(200);
+    loopColorYellow();
   } else if (tmpC > 37.1 && tmpC < 39.9) {
     motor.run(300);
+    loopColorBlue();
   } else if (tmpC > 40) {
     motor.run(-200);
+    loopColorRed();
   } else {
     motor.stop();
   }
@@ -52,8 +54,39 @@ void loop()
 }
 
 void loopColorYellow() {
-  for (int i = 1; i < 5; i++) {
+  for (int i = 1; i < 4; i++) {
     led.setColorAt(i, 237, 231, 40);
+    led.show();
+    delay(1);
+    led.setColorAt(i, 0, 0, 0);
+    led.show();
+  }
+}
+
+void loopColorRed() {
+  for (int i = 1; i < 4; i++) {
+    led.setColorAt(i, 235, 0, 0);
+    led.show();
+    delay(1);
+    led.setColorAt(i, 0, 0, 0);
+    led.show();
+  }
+}
+
+void loopColorWhite() {
+  for (int i = 1; i < 4; i++) {
+    led.setColorAt(i, 255, 255, 255);
+
+    led.show();
+    delay(1);
+    led.setColorAt(i, 0, 0, 0);
+    led.show();
+  }
+}
+
+void loopColorBlue() {
+  for (int i = 1; i < 4; i++) {
+    led.setColorAt(i, 92, 37, 204);
     led.show();
     delay(1);
     led.setColorAt(i, 0, 0, 0);
