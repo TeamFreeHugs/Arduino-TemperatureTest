@@ -38,13 +38,13 @@ void loop()
   if (tmpC < 33) {
     motor.run(100);
     loopColorWhite();
-  } else if (tmpC > 35.1 && tmpC < 37) {
+  } else if (tmpC > 33 && tmpC < 35) {
     motor.run(200);
     loopColorYellow();
-  } else if (tmpC > 37.1 && tmpC < 39.9) {
+  } else if (tmpC > 35 && tmpC < 37) {
     motor.run(300);
     loopColorBlue();
-  } else if (tmpC > 40) {
+  } else if (tmpC > 37) {
     motor.run(-200);
     loopColorRed();
   } else {
